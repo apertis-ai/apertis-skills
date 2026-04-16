@@ -1,14 +1,14 @@
 ---
 name: apertis-api
 description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, model list, web search (:web suffix), and MCP server setup.
-version: 1.0.0
+version: 1.1.0
 author: Apertis
 homepage: https://apertis.ai
 ---
 
 # Apertis API
 
-Apertis is an OpenAI-compatible API gateway providing access to 500+ AI models from 30+ providers (Anthropic, OpenAI, Google, Meta, Mistral, and more).
+Apertis is an OpenAI-compatible API gateway providing access to 500+ AI models from 30+ providers (Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek, and more).
 
 ## Quick Start — One Line to Switch
 
@@ -53,16 +53,19 @@ All OpenAI-compatible endpoints are supported:
 
 ## Popular Models
 
-| Model ID | Best For | Cost |
-|----------|----------|------|
-| `claude-sonnet-4-6` | Coding, complex reasoning | Medium |
-| `claude-haiku-4-5` | Fast responses, simple tasks | Low |
-| `claude-opus-4-6` | Most capable Claude, long tasks | High |
-| `gpt-4o` | Multimodal, vision tasks | Medium |
-| `gpt-4o-mini` | Balanced speed and cost | Low |
-| `gemini-2.0-flash` | Long context (1M tokens), cheapest | Lowest |
-| `gemini-2.5-pro` | Google's most capable | High |
-| `deepseek-chat` | Code-focused, cost-efficient | Low |
+| Model ID | Provider | Best For | Cost |
+|----------|----------|----------|------|
+| `claude-sonnet-4-20250514` | Anthropic | Coding, complex reasoning | Medium |
+| `claude-3-5-haiku-20241022` | Anthropic | Fast responses, lightweight tasks | Low |
+| `claude-opus-4-1-20250805` | Anthropic | Most capable Claude | High |
+| `gpt-4.1` | OpenAI | Latest GPT, general tasks | Medium |
+| `gpt-4.1-mini` | OpenAI | Balanced speed and cost | Low |
+| `gpt-4o` | OpenAI | Multimodal, vision tasks | Medium |
+| `gemini-2.5-flash` | Google | Long context (1M tokens), fast | Low |
+| `gemini-2.5-pro` | Google | Google's most capable | High |
+| `deepseek-v3` | DeepSeek | Cost-efficient coding | Low |
+| `deepseek-r1` | DeepSeek | Reasoning, math | Medium |
+| `o4-mini` | OpenAI | Reasoning tasks | Medium |
 
 Use `GET /v1/models` for the full list of 500+ available models.
 
@@ -72,7 +75,7 @@ Add `:web` to **any model ID** to enable real-time web search:
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-4o-mini:web",   # web search enabled
+    model="gpt-4.1-mini:web",
     messages=[{"role": "user", "content": "What happened in AI news today?"}]
 )
 
@@ -83,7 +86,7 @@ sources = response.choices[0].message.web_sources
 
 ```typescript
 const response = await openai.chat.completions.create({
-  model: "claude-sonnet-4-6:web",
+  model: "claude-sonnet-4-20250514:web",
   messages: [{ role: "user", content: "Latest LLM benchmarks?" }],
 });
 
@@ -103,12 +106,11 @@ client = OpenAI(
 )
 
 response = client.chat.completions.create(
-    model="claude-sonnet-4-6",
+    model="claude-sonnet-4-20250514",
     messages=[
         {"role": "system", "content": "You are a helpful coding assistant."},
         {"role": "user", "content": "Write a Python function to reverse a linked list."}
-    ],
-    temperature=0.7
+    ]
 )
 
 print(response.choices[0].message.content)
@@ -118,7 +120,7 @@ print(response.choices[0].message.content)
 
 ```python
 stream = client.chat.completions.create(
-    model="gpt-4o-mini",
+    model="gpt-4.1-mini",
     messages=[{"role": "user", "content": "Explain async/await in JavaScript"}],
     stream=True
 )
@@ -157,15 +159,7 @@ Use Apertis directly from Claude Code, Cursor, or any MCP-compatible client:
 }
 ```
 
-For Claude Code (`~/.claude.json`), Cursor (`.cursor/mcp.json`), or Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`).
-
-## Environment Variables
-
-```bash
-APERTIS_API_KEY=sk-...        # Your Apertis API key
-# Or for subscription plans:
-APERTIS_API_KEY=sk-sub_...    # Subscription token
-```
+Place in Claude Code (`~/.claude.json`), Cursor (`.cursor/mcp.json`), or Claude Desktop (`~/Library/Application Support/Claude/claude_desktop_config.json`).
 
 ## Subscription Plans
 
@@ -176,26 +170,7 @@ APERTIS_API_KEY=sk-sub_...    # Subscription token
 | Plus | $60/mo | Heavy usage |
 | Max | $200/mo | Unlimited / teams |
 
-All plans include quota-based access to the full model catalog.
 PAYG (pay-as-you-go) is also available with no monthly commitment.
-
-## Error Handling
-
-```python
-from openai import OpenAI, APIError, RateLimitError
-
-client = OpenAI(base_url="https://api.apertis.ai/v1", api_key="...")
-
-try:
-    response = client.chat.completions.create(
-        model="gpt-4o-mini",
-        messages=[{"role": "user", "content": "Hello"}]
-    )
-except RateLimitError:
-    print("Rate limit hit — wait and retry")
-except APIError as e:
-    print(f"API error {e.status_code}: {e.message}")
-```
 
 ## Resources
 

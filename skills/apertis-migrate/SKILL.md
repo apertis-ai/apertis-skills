@@ -1,7 +1,7 @@
 ---
 name: apertis-migrate
 description: Migrate from OpenAI SDK to Apertis API in one line. Works with Python, TypeScript/JavaScript, curl, and LangChain. Same SDK, just change the base URL.
-version: 1.0.0
+version: 1.1.0
 author: Apertis
 homepage: https://apertis.ai
 ---
@@ -52,20 +52,18 @@ OPENAI_API_KEY=sk-...
 APERTIS_API_KEY=sk-...   # your Apertis key from apertis.ai
 ```
 
-Update your `.env` file — your code reads `process.env.APERTIS_API_KEY` (or set it as `OPENAI_API_KEY` if you don't want to change env var names).
-
 ## curl
 
 ```bash
 # Before
 curl https://api.openai.com/v1/chat/completions \
   -H "Authorization: Bearer $OPENAI_API_KEY" \
-  -d '{"model": "gpt-4o-mini", "messages": [...]}'
+  -d '{"model": "gpt-4.1-mini", "messages": [...]}'
 
 # After — only the URL changes
 curl https://api.apertis.ai/v1/chat/completions \
   -H "Authorization: Bearer $APERTIS_API_KEY" \
-  -d '{"model": "gpt-4o-mini", "messages": [...]}'
+  -d '{"model": "gpt-4.1-mini", "messages": [...]}'
 ```
 
 ## LangChain (Python)
@@ -73,12 +71,12 @@ curl https://api.apertis.ai/v1/chat/completions \
 ```python
 # Before
 from langchain_openai import ChatOpenAI
-llm = ChatOpenAI(model="gpt-4o-mini")
+llm = ChatOpenAI(model="gpt-4.1-mini")
 
 # After
 from langchain_openai import ChatOpenAI
 llm = ChatOpenAI(
-    model="gpt-4o-mini",
+    model="gpt-4.1-mini",
     openai_api_base="https://api.apertis.ai/v1",
     openai_api_key="YOUR_APERTIS_KEY"
 )
@@ -90,7 +88,7 @@ llm = ChatOpenAI(
 import { ChatOpenAI } from "@langchain/openai";
 
 const llm = new ChatOpenAI({
-  modelName: "gpt-4o-mini",
+  modelName: "gpt-4.1-mini",
   configuration: {
     baseURL: "https://api.apertis.ai/v1",
     apiKey: process.env.APERTIS_API_KEY,
@@ -103,57 +101,51 @@ const llm = new ChatOpenAI({
 You can keep your existing OpenAI model names — they still work:
 
 ```python
-model="gpt-4o"       # still works
-model="gpt-4o-mini"  # still works
-model="gpt-4-turbo"  # still works
+model="gpt-4o"        # still works
+model="gpt-4.1"       # still works
+model="gpt-4.1-mini"  # still works
 ```
 
-Or switch to any of 500+ models:
+Or switch to any of 500+ models across all providers:
 
 ```python
-model="claude-sonnet-4-6"   # often cheaper, better coding
-model="gemini-2.0-flash"    # cheapest, 1M context
-model="deepseek-chat"       # budget coding option
+model="claude-sonnet-4-20250514"   # Anthropic — best for coding
+model="gemini-2.5-flash"           # Google — cheapest, 1M context
+model="deepseek-v3"                # DeepSeek — budget coding option
+model="deepseek-r1"                # DeepSeek — reasoning tasks
 ```
 
-## Codebase Migration Script
+## Codebase Migration — Let Your AI Assistant Do It
 
-Let your AI assistant auto-migrate your codebase:
+Ask your AI coding assistant to:
 
 1. Find all OpenAI client initializations:
-   - `new OpenAI(` (TypeScript)
-   - `openai.OpenAI(` (Python)
-   - `OpenAI(api_key=` (Python)
+   - `new OpenAI(` (TypeScript/JS)
+   - `OpenAI(api_key=` or `openai.OpenAI(` (Python)
 
 2. Add `base_url="https://api.apertis.ai/v1"` (Python) or `baseURL: "https://api.apertis.ai/v1"` (TypeScript)
 
-3. Replace `OPENAI_API_KEY` → `APERTIS_API_KEY` in env files and config
+3. Replace `OPENAI_API_KEY` → `APERTIS_API_KEY` in `.env` files
 
-4. Update `.env.example` with the new variable name
+4. Update `.env.example` with the new variable
 
-## Estimated Cost Savings
-
-Apertis subscription plans offer predictable monthly costs:
-- Lite $12/mo, Pro $25/mo, Plus $60/mo, Max $200/mo
-
-For high-volume PAYG usage, Apertis routes to the most cost-efficient provider per model.
-Check https://apertis.ai/pricing for current model pricing.
-
-## What You Can Do After Migration
+## What You Unlock After Migration
 
 Add `:web` to any model for real-time web search:
 
 ```python
-model="gpt-4o-mini:web"   # same model + live web results
-# response.choices[0].message.web_sources → [{title, url, snippet}]
+model="gpt-4.1-mini:web"
+# response includes: web_sources → [{title, url, snippet}]
 ```
 
 Access 500+ models without switching SDKs:
 
 ```python
-model="claude-sonnet-4-6"   # Anthropic
-model="gemini-2.0-flash"    # Google
-model="llama-3.3-70b"       # Meta (via Groq/Together)
+model="claude-sonnet-4-20250514"     # Anthropic
+model="gemini-2.5-flash"             # Google
+model="llama-4-maverick"             # Meta
+model="deepseek-r1"                  # DeepSeek
+model="mistral-medium-3"             # Mistral
 ```
 
 ## Get Your API Key
