@@ -1,14 +1,16 @@
 ---
 name: apertis-api
-description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, model list, web search (:web suffix), and MCP server setup.
-version: 1.1.0
+description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, popular model families, web search (:web suffix), and MCP server setup.
+version: 1.2.0
 author: Apertis
 homepage: https://apertis.ai
 ---
 
 # Apertis API
 
-Apertis is an OpenAI-compatible API gateway providing access to 500+ AI models from 30+ providers (Anthropic, OpenAI, Google, Meta, Mistral, DeepSeek, and more).
+Apertis is an OpenAI-compatible API gateway providing access to 500+ AI models from 30+ providers (Anthropic, OpenAI, Google, DeepSeek, Mistral, MiniMax, GLM, and more).
+
+> **Model IDs change frequently.** Always check https://apertis.ai/pricing for the current model list and pricing.
 
 ## Quick Start — One Line to Switch
 
@@ -44,30 +46,26 @@ All OpenAI-compatible endpoints are supported:
 |----------|-------------|
 | `POST /v1/chat/completions` | Chat completions (main endpoint) |
 | `POST /v1/messages` | Native Anthropic Messages API format |
-| `POST /v1/completions` | Legacy text completions |
 | `POST /v1/embeddings` | Text embeddings |
 | `POST /v1/images/generations` | Image generation |
 | `POST /v1/audio/speech` | Text-to-speech |
-| `POST /v1/audio/transcriptions` | Speech-to-text (Whisper) |
-| `GET /v1/models` | List available models |
+| `POST /v1/audio/transcriptions` | Speech-to-text |
+| `GET /v1/models` | List all available models |
 
-## Popular Models
+## Model Families
 
-| Model ID | Provider | Best For | Cost |
-|----------|----------|----------|------|
-| `claude-sonnet-4-20250514` | Anthropic | Coding, complex reasoning | Medium |
-| `claude-3-5-haiku-20241022` | Anthropic | Fast responses, lightweight tasks | Low |
-| `claude-opus-4-1-20250805` | Anthropic | Most capable Claude | High |
-| `gpt-4.1` | OpenAI | Latest GPT, general tasks | Medium |
-| `gpt-4.1-mini` | OpenAI | Balanced speed and cost | Low |
-| `gpt-4o` | OpenAI | Multimodal, vision tasks | Medium |
-| `gemini-2.5-flash` | Google | Long context (1M tokens), fast | Low |
-| `gemini-2.5-pro` | Google | Google's most capable | High |
-| `deepseek-v3` | DeepSeek | Cost-efficient coding | Low |
-| `deepseek-r1` | DeepSeek | Reasoning, math | Medium |
-| `o4-mini` | OpenAI | Reasoning tasks | Medium |
+Apertis carries the latest models from every major provider. Use `GET /v1/models` or visit https://apertis.ai/pricing for the full current list.
 
-Use `GET /v1/models` for the full list of 500+ available models.
+| Provider | Family | Notes |
+|----------|--------|-------|
+| Anthropic | `claude-sonnet-4-*`, `claude-opus-4-*`, `claude-haiku-4-*` | Best for coding |
+| OpenAI | `gpt-5-*`, `gpt-4o`, `o4-mini` | GPT and reasoning series |
+| Google | `gemini-3-*`, `gemini-2.5-*` | Long context, multimodal |
+| DeepSeek | `deepseek-v3`, `deepseek-r1` | Cost-efficient, strong reasoning |
+| MiniMax | `minimax-m1` | Long context alternative |
+| GLM | `glm-4.5-*` | Multilingual, cost-efficient |
+| Meta | `llama-4-*`, `llama-3.3-*` | Open-weight models |
+| Mistral | `mistral-medium-*`, `mistral-small-*` | European, privacy-focused |
 
 ## Web Search — `:web` Suffix
 
@@ -75,7 +73,7 @@ Add `:web` to **any model ID** to enable real-time web search:
 
 ```python
 response = client.chat.completions.create(
-    model="gpt-4.1-mini:web",
+    model="gpt-4o:web",
     messages=[{"role": "user", "content": "What happened in AI news today?"}]
 )
 
@@ -84,35 +82,18 @@ sources = response.choices[0].message.web_sources
 # [{"title": "...", "url": "...", "snippet": "..."}]
 ```
 
-```typescript
-const response = await openai.chat.completions.create({
-  model: "claude-sonnet-4-20250514:web",
-  messages: [{ role: "user", content: "Latest LLM benchmarks?" }],
-});
-
-const sources = (response.choices[0].message as any).web_sources;
-```
-
 **Note**: `:free` models cannot use `:web` suffix.
 
 ## Example: Chat Completion
 
 ```python
-from openai import OpenAI
-
-client = OpenAI(
-    base_url="https://api.apertis.ai/v1",
-    api_key="YOUR_APERTIS_KEY"
-)
-
 response = client.chat.completions.create(
-    model="claude-sonnet-4-20250514",
+    model="claude-sonnet-4-6",   # check apertis.ai/pricing for latest Claude Sonnet ID
     messages=[
         {"role": "system", "content": "You are a helpful coding assistant."},
         {"role": "user", "content": "Write a Python function to reverse a linked list."}
     ]
 )
-
 print(response.choices[0].message.content)
 ```
 
@@ -120,11 +101,10 @@ print(response.choices[0].message.content)
 
 ```python
 stream = client.chat.completions.create(
-    model="gpt-4.1-mini",
+    model="gpt-4o",
     messages=[{"role": "user", "content": "Explain async/await in JavaScript"}],
     stream=True
 )
-
 for chunk in stream:
     if chunk.choices[0].delta.content:
         print(chunk.choices[0].delta.content, end="")
@@ -137,8 +117,7 @@ response = client.embeddings.create(
     model="text-embedding-3-small",
     input="Your text to embed"
 )
-
-vector = response.data[0].embedding  # 1536-dimensional float[]
+vector = response.data[0].embedding
 ```
 
 ## MCP Server Setup
@@ -174,7 +153,6 @@ PAYG (pay-as-you-go) is also available with no monthly commitment.
 
 ## Resources
 
-- API Dashboard: https://apertis.ai
-- Model Pricing: https://apertis.ai/pricing
+- Full model list & pricing: https://apertis.ai/pricing
 - MCP Package: https://www.npmjs.com/package/@apertis/mcp
 - Support: hi@apertis.ai
