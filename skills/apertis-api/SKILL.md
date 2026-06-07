@@ -1,7 +1,7 @@
 ---
 name: apertis-api
-description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, popular model families, web search (:web suffix), and MCP server setup.
-version: 1.2.0
+description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, popular model families, web search (:web suffix), the Vercel AI SDK provider, and MCP server setup.
+version: 1.3.0
 author: Apertis
 homepage: https://apertis.ai
 ---
@@ -120,6 +120,32 @@ response = client.embeddings.create(
 vector = response.data[0].embedding
 ```
 
+## Vercel AI SDK — Native Provider
+
+For TypeScript apps and agents built on the [Vercel AI SDK](https://sdk.vercel.ai/) (v5+), use the native Apertis provider instead of the raw OpenAI SDK. Works with OpenCode, Kilo Code, Cursor, and any AI-SDK-based tool.
+
+```bash
+npm install @apertis/ai-sdk-provider ai
+```
+
+```typescript
+import { apertis } from "@apertis/ai-sdk-provider";
+import { generateText } from "ai";
+
+const { text } = await generateText({
+  model: apertis("claude-sonnet-4-6"),   // any of 500+ models
+  prompt: "Explain quantum computing in simple terms.",
+});
+```
+
+Streaming, tool calling, and embeddings all work through the standard AI SDK functions (`streamText`, `tool`, `embed`). Set `APERTIS_API_KEY` in the environment, or pass it explicitly:
+
+```typescript
+import { createApertis } from "@apertis/ai-sdk-provider";
+
+const apertis = createApertis({ apiKey: process.env.APERTIS_API_KEY });
+```
+
 ## MCP Server Setup
 
 Use Apertis directly from Claude Code, Cursor, or any MCP-compatible client:
@@ -129,7 +155,7 @@ Use Apertis directly from Claude Code, Cursor, or any MCP-compatible client:
   "mcpServers": {
     "apertis": {
       "command": "npx",
-      "args": ["-y", "@apertis/mcp"],
+      "args": ["-y", "@apertis/mcp-server"],
       "env": {
         "APERTIS_API_KEY": "YOUR_APERTIS_KEY"
       }
@@ -154,5 +180,5 @@ PAYG (pay-as-you-go) is also available with no monthly commitment.
 ## Resources
 
 - Full model list & pricing: https://apertis.ai/pricing
-- MCP Package: https://www.npmjs.com/package/@apertis/mcp
+- MCP Package: https://www.npmjs.com/package/@apertis/mcp-server
 - Support: hi@apertis.ai

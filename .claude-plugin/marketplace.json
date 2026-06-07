@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json.schemastore.org/claude-code-marketplace.json",
+  "name": "apertis-skills",
+  "version": "1.3.0",
+  "description": "Apertis agent skills — OpenAI-compatible access to 500+ AI models from 30+ providers.",
+  "plugins": [
+    {
+      "name": "apertis-skills",
+      "description": "Apertis API reference, model picker, and one-line OpenAI migration for your AI coding assistant.",
+      "source": ".",
+      "category": "development"
+    }
+  ]
+}

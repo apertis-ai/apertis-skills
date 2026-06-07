@@ -4,17 +4,26 @@ Agent skills for [Apertis](https://apertis.ai) — OpenAI-compatible API gateway
 
 ## Install
 
+**Any AI coding tool** (Cursor, GitHub Copilot, Codex, Gemini CLI, and [45+ more](https://agentskills.io)):
+
 ```bash
-npx skills add theQuert/apertis-skills
+npx skills add apertis-ai/apertis-skills
 ```
 
-Works with Claude Code, Cursor, GitHub Copilot, Codex, Gemini CLI, and [45+ other AI coding tools](https://agentskills.io).
+**Claude Code** (native plugin marketplace):
+
+```bash
+/plugin marketplace add apertis-ai/apertis-skills
+/plugin install apertis-skills@apertis-skills
+```
+
+Both methods install the same skills — pick whichever fits your tool.
 
 ## Skills
 
 | Skill | Description |
 |-------|-------------|
-| [`apertis-api`](skills/apertis-api/SKILL.md) | Complete Apertis API reference — auth, models, `:web` search, MCP server |
+| [`apertis-api`](skills/apertis-api/SKILL.md) | Complete Apertis API reference — auth, models, `:web` search, Vercel AI SDK, MCP server |
 | [`apertis-model-picker`](skills/apertis-model-picker/SKILL.md) | Opinionated model recommendations by task type |
 | [`apertis-migrate`](skills/apertis-migrate/SKILL.md) | Migrate from OpenAI SDK to Apertis in one line |
 
@@ -25,8 +34,9 @@ Your AI coding assistant will know:
 1. How to authenticate and call the Apertis API (OpenAI-compatible)
 2. Which model to use for each task — with reasoning
 3. How to enable web search on any model (`:web` suffix)
-4. How to set up the Apertis MCP server
-5. How to migrate from OpenAI with a one-line change
+4. How to use the native Vercel AI SDK provider (`@apertis/ai-sdk-provider`)
+5. How to set up the Apertis MCP server
+6. How to migrate from OpenAI with a one-line change
 
 ## Quick Example
 
@@ -54,5 +64,5 @@ model="gpt-4o-mini:web"  # response includes web_sources[]
 
 - [Apertis](https://apertis.ai) — Get your API key
 - [Model list](https://apertis.ai/pricing) — All 500+ models and pricing
-- [MCP Server](https://www.npmjs.com/package/@apertis/mcp) — Use Apertis from any MCP client
+- [MCP Server](https://www.npmjs.com/package/@apertis/mcp-server) — Use Apertis from any MCP client
 - [Agent Skills spec](https://agentskills.io) — How skills work

@@ -1,7 +1,7 @@
 ---
 name: apertis-migrate
-description: Migrate from OpenAI SDK to Apertis API in one line. Works with Python, TypeScript/JavaScript, curl, and LangChain. Same SDK, just change the base URL.
-version: 1.2.0
+description: Migrate from OpenAI SDK to Apertis API in one line. Works with Python, TypeScript/JavaScript, curl, LangChain, and the Vercel AI SDK. Same SDK, just change the base URL.
+version: 1.3.0
 author: Apertis
 homepage: https://apertis.ai
 ---
@@ -97,6 +97,28 @@ const llm = new ChatOpenAI({
   },
 });
 ```
+
+## Vercel AI SDK
+
+If your app or agent is built on the [Vercel AI SDK](https://sdk.vercel.ai/) (OpenCode, Kilo Code, Cursor, etc.), use the native Apertis provider instead of the OpenAI-compatible base URL:
+
+```bash
+npm install @apertis/ai-sdk-provider ai
+```
+
+```typescript
+// Before
+import { openai } from "@ai-sdk/openai";
+import { generateText } from "ai";
+const { text } = await generateText({ model: openai("gpt-4o"), prompt: "..." });
+
+// After — swap the provider import
+import { apertis } from "@apertis/ai-sdk-provider";
+import { generateText } from "ai";
+const { text } = await generateText({ model: apertis("gpt-4o"), prompt: "..." });
+```
+
+Set `APERTIS_API_KEY` in your environment. Everything else (`streamText`, `tool`, `embed`) stays identical.
 
 ## Model Names After Migration
 

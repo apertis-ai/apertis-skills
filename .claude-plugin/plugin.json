@@ -1,0 +1,20 @@
+{
+  "name": "apertis-skills",
+  "version": "1.3.0",
+  "description": "Apertis agent skills: API reference, opinionated model picker, and one-line OpenAI-to-Apertis migration for 500+ models.",
+  "author": {
+    "name": "Apertis",
+    "email": "hi@apertis.ai",
+    "url": "https://apertis.ai"
+  },
+  "homepage": "https://apertis.ai",
+  "repository": "https://github.com/apertis-ai/apertis-skills",
+  "keywords": [
+    "apertis",
+    "llm",
+    "openai-compatible",
+    "ai-gateway",
+    "model-router",
+    "agent-skills"
+  ]
+}
