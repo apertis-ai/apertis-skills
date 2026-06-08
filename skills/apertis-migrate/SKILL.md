@@ -1,7 +1,7 @@
 ---
 name: apertis-migrate
 description: Migrate from OpenAI SDK to Apertis API in one line. Works with Python, TypeScript/JavaScript, curl, LangChain, and the Vercel AI SDK. Same SDK, just change the base URL.
-version: 1.3.0
+version: 1.4.0
 author: Apertis
 homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---

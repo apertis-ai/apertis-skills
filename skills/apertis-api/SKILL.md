@@ -1,7 +1,7 @@
 ---
 name: apertis-api
 description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, popular model families, web search (:web suffix), the Vercel AI SDK provider, and MCP server setup.
-version: 1.3.0
+version: 1.4.0
 author: Apertis
 homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---
@@ -77,8 +77,8 @@ response = client.chat.completions.create(
     messages=[{"role": "user", "content": "What happened in AI news today?"}]
 )
 
-# Response includes web_sources array
-sources = response.choices[0].message.web_sources
+# Response includes a top-level web_sources array (on the response, not inside choices[].message)
+sources = response.web_sources
 # [{"title": "...", "url": "...", "snippet": "..."}]
 ```
 

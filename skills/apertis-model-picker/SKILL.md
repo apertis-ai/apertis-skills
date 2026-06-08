@@ -1,7 +1,7 @@
 ---
 name: apertis-model-picker
 description: Opinionated model recommendations for Apertis API by task type — coding, long context, fast chat, web search, image understanding, reasoning, and cost optimization.
-version: 1.3.0
+version: 1.4.0
 author: Apertis
 homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---

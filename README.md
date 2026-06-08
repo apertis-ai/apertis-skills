@@ -23,6 +23,7 @@ Both methods install the same skills — pick whichever fits your tool.
 
 | Skill | Description |
 |-------|-------------|
+| [`apertis-quickstart`](skills/apertis-quickstart/SKILL.md) | Zero to your first verified Apertis call — key, base_url, first chat completion, `:web` check, troubleshooting |
 | [`apertis-api`](skills/apertis-api/SKILL.md) | Complete Apertis API reference — auth, models, `:web` search, Vercel AI SDK, MCP server |
 | [`apertis-model-picker`](skills/apertis-model-picker/SKILL.md) | Opinionated model recommendations by task type |
 | [`apertis-migrate`](skills/apertis-migrate/SKILL.md) | Migrate from OpenAI SDK to Apertis in one line |
