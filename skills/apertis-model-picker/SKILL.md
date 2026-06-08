@@ -3,12 +3,12 @@ name: apertis-model-picker
 description: Opinionated model recommendations for Apertis API by task type — coding, long context, fast chat, web search, image understanding, reasoning, and cost optimization.
 version: 1.3.0
 author: Apertis
-homepage: https://apertis.ai
+homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---
 
 # Apertis Model Picker
 
-Opinionated recommendations by task type. Model IDs evolve quickly — always verify current IDs and pricing at https://apertis.ai/pricing.
+Opinionated recommendations by task type. Model IDs evolve quickly — always verify current IDs and pricing at https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem.
 
 ## Coding & Debugging
 
@@ -148,7 +148,7 @@ response = client.chat.completions.create(
 | Budget / high volume | Gemini Flash / GLM | Lowest cost tier |
 | Most capable overall | Claude Opus | When quality > cost |
 
-Check live model IDs and pricing at https://apertis.ai/pricing
+Check live model IDs and pricing at https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 
 ---
 

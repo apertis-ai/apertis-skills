@@ -3,14 +3,14 @@ name: apertis-migrate
 description: Migrate from OpenAI SDK to Apertis API in one line. Works with Python, TypeScript/JavaScript, curl, LangChain, and the Vercel AI SDK. Same SDK, just change the base URL.
 version: 1.3.0
 author: Apertis
-homepage: https://apertis.ai
+homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---
 
 # Migrate from OpenAI to Apertis
 
 Apertis is 100% OpenAI-compatible. Migration is one line — change `base_url` / `baseURL` and your API key. No other code changes needed.
 
-> **Model IDs change frequently.** You can keep your existing OpenAI model names (they still work), or check https://apertis.ai/pricing for the full current list across 500+ models.
+> **Model IDs change frequently.** You can keep your existing OpenAI model names (they still work), or check https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem for the full current list across 500+ models.
 
 ## Python
 
@@ -139,7 +139,7 @@ model="deepseek-r1"             # DeepSeek — reasoning tasks
 model="deepseek-v3"             # DeepSeek — budget coding option
 ```
 
-Check the full current model list and pricing at https://apertis.ai/pricing
+Check the full current model list and pricing at https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 
 ## Codebase Migration — Let Your AI Assistant Do It
 
@@ -175,7 +175,7 @@ model="minimax-m1"              # MiniMax — long context alternative
 
 ## Get Your API Key
 
-1. Go to https://apertis.ai
+1. Go to https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 2. Sign up or log in
 3. Navigate to API Keys
 4. Create a new key

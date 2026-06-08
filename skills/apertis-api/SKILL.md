@@ -3,14 +3,14 @@ name: apertis-api
 description: Use Apertis API to access 500+ AI models with OpenAI-compatible SDK. Covers authentication, endpoints, popular model families, web search (:web suffix), the Vercel AI SDK provider, and MCP server setup.
 version: 1.3.0
 author: Apertis
-homepage: https://apertis.ai
+homepage: https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 ---
 
 # Apertis API
 
 Apertis is an OpenAI-compatible API gateway providing access to 500+ AI models from 30+ providers (Anthropic, OpenAI, Google, DeepSeek, Mistral, MiniMax, GLM, and more).
 
-> **Model IDs change frequently.** Always check https://apertis.ai/pricing for the current model list and pricing.
+> **Model IDs change frequently.** Always check https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem for the current model list and pricing.
 
 ## Quick Start — One Line to Switch
 
@@ -34,7 +34,7 @@ const openai = new OpenAI({
 
 ## Authentication
 
-- Get your API key at **https://apertis.ai**
+- Get your API key at **https://apertis.ai?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem**
 - Header: `Authorization: Bearer YOUR_APERTIS_KEY`
 - Keys start with `sk-` (PAYG) or `sk-sub_` (subscription plans)
 
@@ -54,7 +54,7 @@ All OpenAI-compatible endpoints are supported:
 
 ## Model Families
 
-Apertis carries the latest models from every major provider. Use `GET /v1/models` or visit https://apertis.ai/pricing for the full current list.
+Apertis carries the latest models from every major provider. Use `GET /v1/models` or visit https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem for the full current list.
 
 | Provider | Family | Notes |
 |----------|--------|-------|
@@ -179,6 +179,6 @@ PAYG (pay-as-you-go) is also available with no monthly commitment.
 
 ## Resources
 
-- Full model list & pricing: https://apertis.ai/pricing
+- Full model list & pricing: https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=skill-doc&utm_campaign=ecosystem
 - MCP Package: https://www.npmjs.com/package/@apertis/mcp-server
 - Support: hi@apertis.ai

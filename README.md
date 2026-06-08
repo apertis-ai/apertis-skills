@@ -1,6 +1,6 @@
 # Apertis Agent Skills
 
-Agent skills for [Apertis](https://apertis.ai) — OpenAI-compatible API gateway giving you access to 500+ AI models from 30+ providers.
+Agent skills for [Apertis](https://apertis.ai?utm_source=apertis-skills&utm_medium=readme&utm_campaign=ecosystem) — OpenAI-compatible API gateway giving you access to 500+ AI models from 30+ providers.
 
 ## Install
 
@@ -62,7 +62,7 @@ model="gpt-4o-mini:web"  # response includes web_sources[]
 
 ## Links
 
-- [Apertis](https://apertis.ai) — Get your API key
-- [Model list](https://apertis.ai/pricing) — All 500+ models and pricing
+- [Apertis](https://apertis.ai?utm_source=apertis-skills&utm_medium=readme&utm_campaign=ecosystem) — Get your API key
+- [Model list](https://apertis.ai/pricing?utm_source=apertis-skills&utm_medium=readme&utm_campaign=ecosystem) — All 500+ models and pricing
 - [MCP Server](https://www.npmjs.com/package/@apertis/mcp-server) — Use Apertis from any MCP client
 - [Agent Skills spec](https://agentskills.io) — How skills work

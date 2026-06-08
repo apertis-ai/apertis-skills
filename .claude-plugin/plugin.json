@@ -5,9 +5,9 @@
   "author": {
     "name": "Apertis",
     "email": "hi@apertis.ai",
-    "url": "https://apertis.ai"
+    "url": "https://apertis.ai?utm_source=apertis-skills&utm_medium=plugin-manifest&utm_campaign=ecosystem"
   },
-  "homepage": "https://apertis.ai",
+  "homepage": "https://apertis.ai?utm_source=apertis-skills&utm_medium=plugin-manifest&utm_campaign=ecosystem",
   "repository": "https://github.com/apertis-ai/apertis-skills",
   "keywords": [
     "apertis",
