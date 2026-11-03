@@ -1,0 +1,11 @@
+{
+  "mcpServers": {
+    "apertis": {
+      "command": "npx",
+      "args": ["-y", "@apertis/mcp-server"],
+      "env": {
+        "APERTIS_API_KEY": "${APERTIS_API_KEY}"
+      }
+    }
+  }
+}

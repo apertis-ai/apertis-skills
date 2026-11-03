@@ -1,0 +1,35 @@
+{
+  "name": "apertis",
+  "version": "1.4.0",
+  "description": "Apertis for Cursor: the Apertis MCP server (models, keys, usage, quota) plus skills for quickstart, API reference, model picking and one-line OpenAI migration across 500+ models.",
+  "author": {
+    "name": "Apertis",
+    "email": "hi@apertis.ai",
+    "url": "https://apertis.ai?utm_source=cursor-directory&utm_medium=plugin-manifest&utm_campaign=ecosystem"
+  },
+  "homepage": "https://apertis.ai?utm_source=cursor-directory&utm_medium=plugin-manifest&utm_campaign=ecosystem",
+  "repository": "https://github.com/apertis-ai/apertis-skills",
+  "logo": "assets/logo.svg",
+  "keywords": [
+    "apertis",
+    "llm",
+    "openai-compatible",
+    "ai-gateway",
+    "model-router",
+    "mcp",
+    "agent-skills"
+  ],
+  "variables": {
+    "type": "object",
+    "properties": {
+      "APERTIS_API_KEY": {
+        "type": "string",
+        "title": "Apertis API key",
+        "description": "Sign up at https://apertis.ai, then API Keys -> create"
+      }
+    },
+    "required": [
+      "APERTIS_API_KEY"
+    ]
+  }
+}
