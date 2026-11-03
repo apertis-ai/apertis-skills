@@ -17,7 +17,9 @@ npx skills add apertis-ai/apertis-skills
 /plugin install apertis-skills@apertis-skills
 ```
 
-Both methods install the same skills — pick whichever fits your tool.
+**Cursor** (plugin with skills and the Apertis MCP server): install from [cursor.directory](https://cursor.directory/plugins) or point Cursor at this repository; set `APERTIS_API_KEY` when asked.
+
+All methods install the same skills — pick whichever fits your tool.
 
 ## Skills
 
